@@ -1,0 +1,135 @@
+﻿@using WebBanGiay.Models
+@{ 
+    ContextDB con = new ContextDB();
+    var user = Request.Cookies["user"] == null ? "0" : Request.Cookies["user"].Value.ToString();
+    var value = con.ShoppingCarts.Where(p => p.Email.Equals(user)).ToList().Count;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="~/app/dist/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/app/dist/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/app/dist/css/style.css">
+    
+</head>
+<body>
+    <header class="flex jc-c ai-c">
+        <nav class="container flex jc-sb ai-c">
+            <a href="/" class="logo"><img src="~/app/img/logo.png" /></a>
+            <a id="btnToggle" href="#" class="toggle hide-for-desktop">
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+            <ul class="menu flex jc-sb ai-c hide-for-mobile">
+                <li class="acv"><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
+                <li><a href="@Url.Action("ListProduct","Home")">Sản phẩm</a></li>
+                <li><a href="@Url.Action("UserDashBoard","Home")">Tài khoản</a></li>
+                @using (Html.BeginForm("Find", "Home", FormMethod.Post))
+                {
+                    <li class="searchBox">
+                        <input placeholder="Bạn đang tìm gì?" name="txtKeyWord" type="text">
+                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </li>
+                }
+
+            </ul>
+            <div class="status hide-for-mobile">
+                @if (Request.Cookies["user"] != null)
+                {
+                    <a href="@Url.Action("Logout","Home")" id="Userlogout"><i class="fa fa-sign-out-alt"></i>Đăng xuất</a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Login","Home")" id="Userlogin"><i class="fa fa-user-circle" aria-hidden="true"></i>Đăng nhập</a>
+                }
+
+
+                <a href="@Url.Action("ShoppingCart","Home")"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Giỏ hàng<span class="number">@value</span></a>
+            </div>
+            <div class="sub-menu hide-for-desktop">
+                <ul class="menu flex jc-sb ai-c">
+                    <li class="acv"><a href="#">Trang chủ</a></li>
+                    <li><a href="list-products.html">Sản phẩm</a></li>
+                    <li><a href="user-dashbroad.html">Tài khoản</a></li>
+                    <li class="searchBox"><input placeholder="Bạn đang tìm gì?" name="txtKeyWord" type="text"><button><i class="fa fa-search" aria-hidden="true"></i></button></li>
+                </ul>
+                <div class="status">
+                    @if (Request.Cookies["user"] != null)
+                    {
+                        <a href="@Url.Action("Logout", "Home")"><i class="fa fa-sign-out-alt"></i>Đăng xuất</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Login", "Home")"><i class="fa fa-user-circle" aria-hidden="true"></i>Đăng nhập</a>
+                    }
+                    <a href="@Url.Action("ShoppingCart","Home")"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Giỏ hàng <span class="number">@value</span></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <footer class="mt-5 flex jc-sa ai-c">
+            <div class="footer__main container flex jc-sa ">
+                <div class="col">
+                    <h2>Liên hệ</h2>
+                    <ul>
+                        <li><i class="fa fa-phone" aria-hidden="true"></i>(+84) 355120808</li>
+                        <li><i class="fab fa-github"></i>cuong9pm</li>
+                        <li><i class="fa fa-envelope" aria-hidden="true"></i>achienpro@gmail.com</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h2>Thời gian mở cửa</h2>
+                    <ul>
+                        <li><i class="fa fa-check"></i>Monday - Saturday ( 8h30am - 9pm )</li>
+                        <li><i class="fa fa-check"></i>Sunday (8h30am - 1pm)</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h2>Địa chỉ</h2>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.421256775017!2d106.78340691489257!3d10.855529592267908!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175276e812813e1%3A0x6e4c23af96c88480!2zVHJ1bmcgVMOibSDEkMOgbyBU4bqhbyBOaMOibiBM4buxYyBDaOG6pXQgTMaw4bujbmcgQ2FvIC0gSFVURUNI!5e0!3m2!1svi!2s!4v1626228033163!5m2!1svi!2s" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+            <p class="footer__cp">
+                © Copyright 2021 NIKE. All rights reserved.
+            </p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script>
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            dots: false,
+            autoplay: true,
+            slideTransition: "all 0.5s",
+            autoplayTimeout: 3000,
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 4
+                }
+            }
+        })
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

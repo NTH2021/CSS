@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ProjectCCS.Models.User>
+@{
+    ViewBag.Title = "UserManager";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="admin container flex">
+    @Html.Partial("~/Views/Shared/_NavigationBar.cshtml")
+    <div class="content" style="overflow-y: scroll;">
+        <!-- 75% -->
+        <div class="nav-menu">
+            <h3>Quản lý người dùng</h3>
+            @using (Html.BeginForm("UserFilter", "Home",FormMethod.Post,new { @class="searchBox" }))
+            {
+                <input type="text" id="searchProducts" name="txtSearch">
+                <button type="submit">Tìm</button>
+            }
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Tên User</th>
+                    <th>Địa chỉ</th>
+                    <th>SĐT</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Email</td>
+                        <td>@item.Name</td>
+                        <td>@item.Address</td>
+                        <td>@item.Phone</td>
+                        <td>
+                            <div class="iconBox">
+                                <a href="@Url.Action("DeleteUser","Home", new { uEmail = item.Email })"><i class="fa fa-trash"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>
+

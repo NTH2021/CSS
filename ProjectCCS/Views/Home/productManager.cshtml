@@ -1,0 +1,99 @@
+﻿@model ProjectCCS.Models.Product
+@using ProjectCCS.Models
+@using System.Globalization
+@{
+    ViewBag.Title = "productManager";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var list = ViewBag.lst as IEnumerable<ProjectCCS.Models.Product>;
+    ContextDB con = new ContextDB();
+}
+
+<section class="admin container flex">
+
+    @Html.Partial("~/Views/Shared/_NavigationBar.cshtml")
+
+    <div class="content" style="overflow-y: scroll;">
+        <!-- 75% -->
+        <div class="nav-menu">
+            <h3>Quản lý sản phẩm</h3>
+            <form action="./manager-products.html" class="searchBox">
+                <input type="text" id="searchProducts" name="txtSearch">
+                <button type="submit">Tìm</button>
+            </form>
+            <a href="#" id="openModal"><i class="fa fa-plus-circle"></i>Add</a>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên SP</th>
+                    <th>Hình ảnh</th>
+                    <th>Đơn giá</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in list)
+                {
+                    <tr>
+                        <td>@product.id</td>
+                        <td>@product.name</td>
+                        <td>
+                            <div class="imgBox">
+                                <img src="@product.image" alt="">
+                            </div>
+                        </td>
+                        <td>@String.Format(CultureInfo.CurrentCulture, "{0:C0}", @product.price)</td>
+                        <td>
+                            <div class="iconBox">
+                                <a href="/Home/deleteProduct/@product.id"><i class="fa fa-trash"></i></a>
+                                <a href="/Home/editProduct/@product.id"><i class="check fa fa-wrench"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+
+<div class="modal" id="modal">
+    <div class="modal__header flex jc-sb ai-c">
+        <h2>Add products</h2>
+        <a class="exit" href=""><i class="fa fa-times"></i></a>
+    </div>
+    <div class="modal__body">
+        @using (Html.BeginForm("Add", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(m => m.id, new { name = "id", disable = true })
+            <div class="groupBox">
+                <label>Tên sản phẩm:</label>
+                @Html.EditorFor(m => m.name, new { @autocomplete = "none" })
+            </div>
+            <div class="groupBox">
+                <label>Giá sản phẩm:</label>
+                @Html.EditorFor(m => m.price, new { @autocomplete = "none" })
+            </div>
+            <div class="groupBox">
+                <label>Danh mục:</label>
+                @Html.DropDownListFor(m => m.categoryId, new SelectList(con.Categories.ToList(), "id", "name"))
+            </div>
+            <div class="groupBox">
+                <label>Mô tả</label>
+                @Html.EditorFor(m => m.descriptions, new { @autocomplete = "none" })
+            </div>
+            <div class="groupBox">
+                <label>Hình ảnh:</label>
+                @Html.HiddenFor(m => m.image)
+                @Html.TextBox("file", "", new { type = "file", accept = "image/jpg, image/png" })
+            </div>
+            <div class="modal__footer">
+                <button type="submit" class="btn btn-success"><i class="fa fa-plus-circle"></i>Add</button>
+            </div>
+        }
+    </div> 
+</div>

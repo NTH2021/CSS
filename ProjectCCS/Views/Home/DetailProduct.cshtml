@@ -1,0 +1,34 @@
+﻿@model ProjectCCS.Models.Product
+@{
+    ViewBag.Title = "Chi tiết sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="main_title">Chi TIết Sản Phẩm <i class="fa fa-fire" style="color: red;"></i></h1>
+<section class="detail-product flex container">
+    <div class="left-side">
+        <!-- Contain img product 25%-->
+       
+        <img src="@Html.DisplayFor(model => model.image)" alt="">
+    </div>
+    <div class="right-side">
+        <!-- Contains cart, price, quantily 75% -->
+        <h3 class="product-name"> @Html.DisplayFor(model => model.name)</h3>
+        <p class="product-price">
+            @Html.DisplayFor(model => model.price) <sup>đ</sup>
+        </p>
+            <form action="">
+                <div class="quan">
+                    <label for="">Số lượng:</label>
+                    <input value="1" type="number" name="numb" step="1" min="1" oninput="validity.valid||(value='');">
+                </div>
+                <button>Thêm vào giỏ</button>
+            </form>
+            <p class="product-description">
+                @Html.DisplayFor(model => model.descriptions)
+            </p>
+
+    </div>
+</section>
+
+@Html.Partial("~/Views/Shared/_HotProduct.cshtml")

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="./app/dist/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="./app/dist/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="./app/dist/css/style.css">
+    <title>Shoes</title>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="flex jc-c ai-c">
+        <nav class="container flex jc-sb ai-c">
+            <a href="./" class="logo">Shoes</a>
+            <a id="btnToggle" href="#" class="toggle hide-for-desktop">
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+            <ul class="menu flex jc-sb ai-c hide-for-mobile">
+                <li class="acv"><a href="#">Trang chủ</a></li>
+                <li><a href="list-products.html">Sản phẩm</a></li>
+                <li><a href="user-dashbroad.html">Tài khoản</a></li>
+                <li class="searchBox"><input placeholder="Bạn đang tìm gì?" name="txtKeyWord" type="text"><button><i class="fa fa-search" aria-hidden="true"></i></button></li>
+            </ul>
+            <div class="status hide-for-mobile">
+                <a href="./login.html" ><i class="fa fa-user-circle" aria-hidden="true"></i>Đăng nhập</a>
+                <a href="#" ><i class="fa fa-sign-out-alt"></i>Đăng xuất</a>
+                <a href="./giohang.html" ><i class="fa fa-shopping-cart" aria-hidden="true"></i>Giỏ hàng<span class="number">0</span></a>
+            </div>
+            <div class="sub-menu hide-for-desktop">
+                <ul class="menu flex jc-sb ai-c">
+                    <li class="acv"><a href="#">Trang chủ</a></li>
+                    <li><a href="list-products.html">Sản phẩm</a></li>
+                    <li><a href="user-dashbroad.html">Tài khoản</a></li>
+                    <li class="searchBox"><input placeholder="Bạn đang tìm gì?" name="txtKeyWord" type="text"><button><i class="fa fa-search" aria-hidden="true"></i></button></li>
+                </ul>
+                <div class="status">
+                    <a href="./login.html" ><i class="fa fa-user-circle" aria-hidden="true"></i>Đăng nhập</a>
+                    <a href="#" ><i class="fa fa-sign-out-alt"></i>Đăng xuất</a>
+                    <a href="./giohang.html" ><i class="fa fa-shopping-cart" aria-hidden="true"></i>Giỏ hàng <span class="number">0</span></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- Dashbroad for user -->
+    <section class="user container flex">
+        <div class="nav">
+            <!-- 25% -->
+            <h4 class="name-user">Chào Mọi Người </h4>
+            <ul>
+                <li><i class="fa fa-user-circle" aria-hidden="true"></i><a href="#">Thông tin tài khoản</a></li>
+                <li><i class="fa fa-history"></i><a href="">Lịch sử mua hàng</a></li>
+                <li><i class="fa fa-cart-arrow-down" aria-hidden="true"></i><a href="giohang.html">Giỏ hàng</a></li>
+                <li><i class="fa fa-key"></i><a href="#">Đổi mật khẩu</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            <!-- 75% -->
+            <h3>Đổi mật khẩu</h3>
+            <form action="">
+                <div class="inputBox">
+                    <label for="">Mật khẩu cũ</label>
+                    <input type="password" name="mkCu" >
+                </div>
+                <div class="inputBox">
+                    <label for="">Mật khẩu mới</label>
+                    <input type="password" name="mkMoi" >
+                </div>
+                <div class="inputBox">
+                    <label for="">Nhập lại mật khẩu mới</label>
+                    <input type="password" name="reMkMoi" >
+                </div>
+                <button type="submit">Cập nhật</button>
+            </form>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+    <footer class="mt-5 flex jc-sa ai-c">
+        <div class="footer__main container flex jc-sa ">
+            <div class="col">
+                <h2>Liên hệ</h2>
+                <ul>
+                    <li><i class="fa fa-phone" aria-hidden="true"></i> (+84) 0392680723</li>
+                    <li><i class="fab fa-github"></i>abe18-11</li>
+                    <li><i class="fa fa-envelope" aria-hidden="true"></i>huybest10@gmail.com</li>
+                </ul>
+            </div>
+            <div class="col">
+                <h2>Thời gian mở cửa</h2>
+                <ul>
+                    <li><i class="fa fa-check"></i>Monday - Saturday ( 7am - 9pm )</li>
+                    <li><i class="fa fa-check"></i>Sunday (7am - 1pm)</li>
+                </ul>
+            </div>
+            <div class="col">
+                <h2>Địa chỉ</h2>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.1250520425215!2d106.71230301397601!3d10.801733161681753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528a459cb43ab%3A0x6c3d29d370b52a7e!2sHutech%20University!5e0!3m2!1sen!2s!4v1616234485593!5m2!1sen!2s" width="350" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+        <p class="footer__cp">
+            © Copyright 2021 CCS. All rights reserved.
+        </p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./app/js/owl.carousel.min.js"></script>
+    <script src="./app/js/app.js"></script>
+    <script>
+        $('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+    dots: false,
+    autoplay:true,
+    slideTransition: "all 0.5s" ,
+    autoplayTimeout: 3000,
+    responsive:{
+        0:{
+            items:2
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:4
+        }
+    }
+})
+    </script>
+</body>
+</html>

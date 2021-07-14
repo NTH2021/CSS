@@ -1,0 +1,46 @@
+﻿@model ProjectCCS.Models.Product
+@using ProjectCCS.Models
+@{
+    ViewBag.Title = "editProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var con = new ContextDB();
+}
+
+<!-- Dashbroad for user -->
+<section class="user container flex">
+    
+    @Html.Partial("~/Views/Shared/_NavigationBar.cshtml")
+
+    <div class="content">
+        <!-- 75% -->
+        <h3>Chỉnh sửa sản phẩm</h3>
+        @using (Html.BeginForm("Edit", "Home", FormMethod.Post, new { @class = "edit", enctype = "multipart/form-data" }))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.id)
+            <div class="inputBox">
+                <label for="">Tên sản phẩm</label>
+                @Html.EditorFor(m => m.name, new { @autocomplete = "none" })
+            </div>
+            <div class="inputBox">
+                <label for="">Giá</label>
+                @Html.EditorFor(m => m.price, new { @autocomplete = "none" })
+            </div>
+            <div class="inputBox">
+                <label>Danh mục:</label>
+                @Html.DropDownListFor(m => m.categoryId, new SelectList(con.Categories.ToList(), "id", "name"))
+            </div>
+            <div class="inputBox">
+                <label for="">Mô tả</label>
+                @Html.EditorFor(m => m.descriptions, new { @autocomplete = "none" })
+            </div>
+            <div class="inputBox">
+                <label>Hình ảnh:</label>
+                @Html.HiddenFor(m => m.image)
+                @Html.TextBox("file", "", new { type = "file", accept = "image/jpg, image/png" })
+            </div>
+            <button type="submit">Cập nhật</button>
+        }
+    </div>
+</section>
+

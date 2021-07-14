@@ -1,0 +1,43 @@
+﻿@using ProjectCCS.Models
+@using System.Globalization
+@{
+    ViewBag.Title = "HistoryCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var list = ViewBag.HistoryCart as IEnumerable<Bill>;
+}
+
+<!-- Dashbroad for user -->
+<section class="user history-main container flex">
+    @Html.Partial("~/Views/Shared/_NavigationBar.cshtml")
+    <div class="content">
+        <!-- 75% -->
+        <h3>Lịch sử mua hàng</h3>
+
+        <table class="history">
+            <tr>
+                <th>Mã đơn hàng</th>
+                <th>Ngày mua</th>
+                <th>Tổng tiền</th>
+                <th>Trạng thái</th>
+            </tr>
+
+            @foreach (var item in list)
+            {
+                <tr>
+                    <td>@item.idBill</td>
+                    <td>@item.Date</td>
+                    <td>@String.Format(CultureInfo.CurrentCulture, "{0:C0}", @item.Total)</td>
+                    @if (item.Status.Value)
+                    {
+                        <td class="susscess">Success</td>
+                    }
+                    else
+                    {
+                        <td class="pending">Pending</td>
+                    }
+                </tr>
+            }
+        </table>
+    </div>
+</section>
+

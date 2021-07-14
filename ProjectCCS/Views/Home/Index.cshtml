@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Trang Chủ";
+}
+
+<<section class="banner  flex jc-c ai-c container">
+    <div class="banner__text">
+        <h2 class="title">Mua Bán Giày NiKE</h2>
+        <p><i class="fa fa-quote-left" aria-hidden="true"></i> Sự hài lòng của bạn là mục tiêu của chúng tôi !<i class="fa fa-quote-right" aria-hidden="true"></i> <span class="author">CEO Minh Rớt</span></p>
+        <a href="/" class="button">Bạn đang tìm kiếm gì?</a>
+    </div>
+    <div class="banner__img"></div>
+</section>
+
+<!-- Services -->
+<section class="services container mt-5">
+    <h1 class="main_title">CAM KẾT DỊCH VỤ</h1>
+    <div class="services__items flex jc-sa ai-c mt-3">
+        <div class="services__item">
+            <div class="item-content">
+                Giao hàng tận cửa
+            </div>
+            <img src="~/app/img/giaohang.jpg" alt="">
+            <div class="item-detail">
+                Dù bạn ở văn phòng hay chung cư cao tầng, thậm chí không có thang máy, đảm bảo giao hàng tận cửa, bạn không cần dừng công việc để xuống lấy hàng!
+            </div>
+        </div>
+        <div class="services__item">
+            <img src="~/app/img/tannoi.jpg" alt="">
+            <div class="item-content">
+                Giao đúng sản phẩm, đúng hẹn
+            </div>
+            <div class="item-detail">
+                Chỉ cần chọn mốc giờ khi đặt hàng, cam kết giao đúng sản phẩm, đúng hẹn. Nếu thiếu hàng giao trễ dù chỉ 1 phút, hoàn tiền.
+            </div>
+        </div>
+        <div class="services__item">
+            <div class="item-content">
+                Sự hài lòng
+            </div>
+            <img src="~/app/img/hailong.png" alt="">
+            <div class="item-detail">
+                Nhân viên giao hàng cuả shop rất mong muốn trao sự hài lòng đến bạn, vì thế sẽ luôn mỉm cười, mở lời chào, lời cảm ơn khi bạn nhận hàng.
+            </div>
+        </div>
+    </div>
+</section>
+@Html.Partial("~/Views/Shared/_HotProduct.cshtml");

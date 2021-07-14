@@ -1,0 +1,31 @@
+﻿@model ProjectCCS.Models.User
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <section class="content">
+        <section class="login-main">
+            <div class="box">
+                <h2 class="box__title">Đăng nhập</h2>
+                <div class="box__body">
+                    <div style="color:red;">@ViewBag.Message</div>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken();
+
+                        @Html.LabelFor(m => m.Email)
+                        @Html.EditorFor(m => m.Email, new { placeholder = "Email address" })
+                        @Html.ValidationMessageFor(m => m.Email)
+
+                        @Html.LabelFor(m => m.Password)
+                        @Html.EditorFor(m => m.Password, new { type = "password", placeholder = "Password" })
+                        @Html.ValidationMessageFor(m => m.Password)
+                        <input type="submit" value="Đăng nhập">
+                        <a href="@Url.Action("Register", "Home")"><input type="button" value="Đăng ký" /></a>
+                    }
+                </div>
+            </div>
+        </section>
+    </section>
+

@@ -1,0 +1,64 @@
+﻿@using ProjectCCS.Models
+@using ProjectCCS.ViewsModel
+@using System.Globalization
+@{
+    ViewBag.Title = "Giỏ hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var list = ViewBag.ShoppingCart as IEnumerable<ShoppingCartVM>;
+    long total = 0;
+}
+
+<section class="giohang container flex mt-3">
+    <div class="list">
+        <!-- 70% -->
+        <h2 class="main_title">Giỏ hàng</h2>
+        <div class="list__content">
+            @foreach (var item in list)
+            {
+                <div class="item">
+                    <div class="imgBox">
+                        <img src="@item.image" alt="">
+                    </div>
+                    @using (Html.BeginForm("UpdateCart", "Home", FormMethod.Post, new { @class = "item__details" }))
+                    {
+                        <div class="detailBox">
+                            <input type="hidden" name="id" value="@item.id" />
+                            <h3>@item.name</h3>
+                            <p class="price">@String.Format(CultureInfo.CurrentCulture, "{0:C0}", @item.price)</p>
+                        </div>
+                        <div class="inputBox">
+                            <input type="button" value="-">
+                            <input name="amount" type="number" value="@item.Amount" min="1">
+                            <input type="button" value="+">
+                        </div>
+                        <div class="iconBox">
+                            <a href="@Url.Action("RemoveCart", "Home", new { id=item.id })"><i class="fa fa-times-circle"></i></a>
+                            <button type="submit" class="btn btn-success" ><i class="check fa fa-check"></i></button>
+                        </div>
+                    }
+                </div>
+            } 
+        </div>
+
+    </div>
+    <div class="checkout">
+        <!-- 30% -->
+        <h2 class="main_title">Thông tin thanh toán</h2>
+        <div class="list__checkout">
+            <h3>Địa chỉ thanh toán:</h3>
+            <p>@ViewBag.User.Address</p>
+            @foreach (var item in list)
+            {
+                <div class="flex jc-sb ai-c" style="border-bottom:solid">
+                    <p>@item.name x @item.Amount: </p>
+                    <p>@String.Format(CultureInfo.CurrentCulture, "{0:C0}", (long)item.price * (long)item.Amount)</p>
+                </div>
+                total += (long)item.price * (long)item.Amount;
+            }
+        </div>
+        <div class="footer__checkout">
+            <h2>@String.Format(CultureInfo.CurrentCulture,"{0:C0}",total)</h2>
+            <a href="@Url.Action("Checkout","Home")" id="CheckoutShoppingCart" class="thanhToan">Thanh toán</a>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,36 @@
+﻿@model ProjectCCS.Models.User
+@{
+    ViewBag.Title = "UserDashBoard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="user container flex">
+    @Html.Partial("~/Views/Shared/_NavigationBar.cshtml")
+    <div class="content">
+        <!-- 75% -->
+        <h3>Thông tin tài khoản</h3>
+        @using(Html.BeginForm("Update","Home",FormMethod.Post))
+        {
+            @Html.ValidationSummary()
+            <div class="inputBox">
+                @Html.LabelFor(m => m.Name, "Họ tên")
+                @Html.EditorFor(m=>m.Name, new {autocomplete="none"})
+            </div>
+            <div class="inputBox">
+                @Html.LabelFor(m => m.Phone, "Số điện thoại")
+                @Html.EditorFor(m => m.Phone, new { autocomplete = "none" })
+                @Html.ValidationMessageFor(m=>m.Phone)
+            </div>
+            <div class="inputBox">
+                @Html.LabelFor(m => m.Email, "Email")
+                @Html.TextBoxFor(m => m.Email, new { disable = "disable", @readonly = "readonly" })
+            </div>
+            <div class="inputBox">
+                @Html.LabelFor(m => m.Address, "Địa chỉ")
+                @Html.EditorFor(m => m.Address, new { autocomplete = "none" })
+            </div>
+            <button type="submit">Cập nhật</button>
+        }
+    </div>
+</section>
+

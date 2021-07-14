@@ -1,0 +1,53 @@
+﻿@using System.Globalization
+@model IEnumerable<ProjectCCS.ViewsModel.BillManagerVM>
+@{
+    ViewBag.Title = "BillManager";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="admin container flex">
+    @Html.Partial("~/Views/Shared/_NavigationBar.cshtml")
+    <div class="content" style="overflow-y: scroll;">
+        <!-- 75% -->
+        <h3>Danh sách đơn hàng</h3>
+        <table>
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Ngày đặt</td>
+                    <td>Người đặt</t>
+                    <td>Địa chỉ</td>
+                    <td>Tổng tiền</td>
+                    <td>Trạng thái</td>
+                    <td>Hoàn thành</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.idBill</td>
+                        <td>@item.Date.Value.ToShortDateString()</td>
+                        <td>@item.Name</td>
+                        <td>@item.Address</td>
+                        <td>@String.Format(CultureInfo.CurrentCulture, "{0:C0}", @item.Total)</td>
+                        @if (item.Status.Value)
+                        {
+                            <td class="susscess">Success</td>
+                        }
+                        else
+                        {
+                            <td class="pending">Pending</td>
+                            <td>
+                                <div class="iconBox">
+                                    <a href="@Url.Action("Complete","Home", new { idBill = item.idBill })"><i class=" check fa fa-check"></i></a>
+                                </div>
+                            </td>
+                        }
+                    </tr>
+                 }
+            </tbody>
+        </table>
+    </div>
+</section>
+
